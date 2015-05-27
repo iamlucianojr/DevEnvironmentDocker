@@ -1,0 +1,10 @@
+web:
+    build: ./container/web
+    environment:
+        - VIRTUAL_HOST=dockerenv
+    privileged: true
+    volumes:
+        - ./src:/src
+    ports:
+        - "80:80"
+    entrypoint: /run.sh
