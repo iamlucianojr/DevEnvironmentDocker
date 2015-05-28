@@ -1,7 +1,19 @@
+mysql:
+    build: ./container/mysql
+    privileged: true
+    ports:
+        - "3306:3306"
+    environment:
+        - MYSQL_ROOT_PASSWORD=root
+        - MYSQL_USER=root
+        - MYSQL_PASSWORD=root
+        - MYSQL_DATABASE=dockerenvdb
 web:
     build: ./container/web
     environment:
         - VIRTUAL_HOST=dockerenv
+    links:
+        - mysql:mysql
     privileged: true
     volumes:
         - ./src:/src
